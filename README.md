@@ -2,6 +2,8 @@
 
 MEAN stack authentication and authorization template with roles using JSON web tokens.
 
+Use this template for apps that require authentication and roles.
+
 ## What this project includes
 
 * Login page
