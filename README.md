@@ -4,6 +4,12 @@ MEAN stack authentication and authorization template with roles using JSON web t
 
 Use this template for apps that require authentication and roles.
 
+## Usage
+
+1. Change the values in keys.json to match your infrastructure
+2. Add keys.json to the .gitignore file in the `api` folder
+3. Change the brand text on the navbar
+
 ## What this project includes
 
 * Login page
