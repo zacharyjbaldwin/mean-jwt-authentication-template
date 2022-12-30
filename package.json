@@ -1,0 +1,31 @@
+{
+  "name": "mean-jwt-authentication-template",
+  "version": "1.0.0",
+  "description": "MEAN stack authentication and authorization template with roles using JSON web tokens.",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacharyjbaldwin/mean-jwt-authentication-template.git"
+  },
+  "author": "Zachary Baldwin (zacharyjbaldwin@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zacharyjbaldwin/mean-jwt-authentication-template/issues"
+  },
+  "homepage": "https://github.com/zacharyjbaldwin/mean-jwt-authentication-template#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.2",
+    "mongoose-unique-validator": "^3.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

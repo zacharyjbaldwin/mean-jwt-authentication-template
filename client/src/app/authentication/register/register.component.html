@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h4>Register</h4>
+        <hr>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">First name</label>
+                    <input class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched }" type="text" formControlName="firstname" required>
+                    <span class="form-text invalid-feedback" *ngIf="registerForm.get('firstname')?.errors?.['required']">First name is required.</span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Last name</label>
+                    <input class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched }" type="text" formControlName="lastname" required>
+                    <span class="form-text invalid-feedback" *ngIf="registerForm.get('lastname')?.errors?.['required']">Last name is required.</span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('email')?.invalid && registerForm.get('email')?.touched }" type="email" formControlName="email" required>
+                <span class="form-text invalid-feedback" *ngIf="registerForm.get('email')?.errors?.['required']">Email address is required.</span>
+                <span class="form-text invalid-feedback" *ngIf="registerForm.get('email')?.errors?.['email']">Input must be a valid email address.</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched }" type="password" formControlName="password" required>
+                <span class="form-text invalid-feedback" *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+            </div>
+            <button [disabled]="registerForm.invalid" class="btn btn-dark col-12" type="submit">Login</button>
+        </form>
+    </div>
+</div>

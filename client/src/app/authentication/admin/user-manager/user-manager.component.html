@@ -1,0 +1,29 @@
+<div class="card">
+    <h5 class="card-header">User Manager</h5>
+    <div class="card-body">
+        <table class="table overflow">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user._id }}</td>
+                    <td>{{ user.firstname }} {{ user.lastname }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                        <button *ngIf="user.role != 'admin'" class="btn btn-sm btn-success me-1" (click)="setRole(user, 'admin')">Promote to Admin</button>
+                        <button *ngIf="user.role == 'admin'" class="btn btn-sm btn-primary" (click)="setRole(user, 'user')">Demote to User</button>
+                        <button *ngIf="user.role != 'admin'" class="btn btn-sm btn-danger" (click)="deleteUser(user)">Delete User</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
