@@ -23,5 +23,6 @@ Use this template for apps that require authentication and roles.
 * ~~Profile page (accessible to authenticated users only)~~
 * ~~Admin page (accessible to admins only)~~
 * ~~Simple user manager~~
+* Error handler HTTP interceptor
 * Change password wizard
 * Forgot password wizard
