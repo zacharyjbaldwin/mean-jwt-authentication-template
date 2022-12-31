@@ -47,7 +47,7 @@ module.exports.register = (req, res) => {
 
     User.findOne({ email: req.body.email.trim().toLowerCase() })
         .then((user) => {
-            if (user) return res.status(409).json({ error: 'Bad request.' });
+            if (user) return res.status(409).json({ error: 'EMAIL_IN_USE' });
 
             bcrypt.hash(req.body.password, 10)
                 .then((hash) => {
@@ -56,7 +56,7 @@ module.exports.register = (req, res) => {
                         firstname: req.body.firstname.trim(),
                         lastname: req.body.lastname.trim(),
                         password: hash,
-                        role: "user"
+                        role: 'user'
                     });
 
                     user.save()
