@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 interface AuthData {
@@ -124,7 +124,11 @@ export class AuthenticationService {
         }
       }
     });
-  };
+  }
+
+  public changePassword(userId: string, oldPassword: string, newPassword: string): Observable<boolean> {
+    return this.http.put<boolean>(`${environment.apiUrl}/password/${userId}`, { oldPassword: oldPassword, newPassword: newPassword });
+  }
 
   public logout(): void {
     this.isAuthenticated = false;

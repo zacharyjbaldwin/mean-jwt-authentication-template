@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { UserManagerComponent } from './authentication/admin/user-manager/user-manager.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ToastrModule } from 'ngx-toastr';
     AdminComponent,
     NavbarComponent,
     HomeComponent,
-    UserManagerComponent
+    UserManagerComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

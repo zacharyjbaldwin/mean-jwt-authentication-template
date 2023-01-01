@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/authentication', require('./api/routes/authentication'));
+app.use('/api/password', require('./api/routes/password'));
 app.use('/api/user-manager', require('./api/routes/user-manager'));
 
 app.use((req, res) => {
