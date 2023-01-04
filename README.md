@@ -30,6 +30,6 @@ Use this template for apps that require authentication and roles.
 * ~~Admin page (accessible to admins only)~~
 * ~~Simple user manager~~
 * ~~ngx-toastr alerts~~
+* ~~Change password wizard~~
 * Error handler HTTP interceptor
-* Change password wizard
 * Forgot password wizard
