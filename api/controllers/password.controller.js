@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const User = require('../models/user');
+const User = require('../models/user.model');
 
 module.exports.changePassword = (req, res) => {
     if (req.body.oldPassword == null || req.body.newPassword == null) {
