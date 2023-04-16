@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: null,
+  doEmailVerificaiton: false,
+  doForgotPasswordReset: false
 };

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../controllers/password');
+const controller = require('../controllers/password.controller');
 const isAuthenticated = require('../middleware/isAuthenticated');
 
 router.put('/:id', isAuthenticated, controller.changePassword);

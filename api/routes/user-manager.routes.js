@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../controllers/user-manager');
+const controller = require('../controllers/user-manager.controller');
 const isAuthenticated = require('../middleware/isAuthenticated');
 const isAdmin = require('../middleware/isAdmin');
 

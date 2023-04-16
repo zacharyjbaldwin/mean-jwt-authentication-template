@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
-const JWT_SECRET = process.env.JWT_SECRET || require('../keys.json').JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || require('../../keys.json').JWT_SECRET;
 
 module.exports.login = (req, res) => {
     if (req.body.email == null || req.body.password == null) {

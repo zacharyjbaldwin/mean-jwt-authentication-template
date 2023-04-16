@@ -1,0 +1,4 @@
+{
+    "doEmailVerificaiton": false,
+    "doForgotPasswordReset": false
+}
