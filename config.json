@@ -1,8 +1,0 @@
-{
-    "doGeneralEmailNotitications": true,
-    "doEmailVerificaiton": true,
-    "doForgotPasswordReset": true,
-    "sendgrid": {
-        "from": "noreply@zacharyjbaldwin.com"
-    }
-}

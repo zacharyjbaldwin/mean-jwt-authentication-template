@@ -2,21 +2,24 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user.model');
+const { validationResult } = require('express-validator');
 
 const JWT_SECRET = process.env.JWT_SECRET || require('../../keys.json').JWT_SECRET;
 
 module.exports.login = (req, res) => {
-    if (req.body.email == null || req.body.password == null) {
-        return res.status(400).json({ error: 'Bad request.' });
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ message: 'One or more required paramters is missing or malformed.' });
     }
 
-    User.findOne({ email: req.body.email.trim().toLowerCase() })
-        .then((user) => {
-            if (!user) return res.status(401).json({ error: 'Unauthorized.' });
+    const { email, password } = req.body;
 
-            bcrypt.compare(req.body.password, user.password)
+    User.findOne({ email })
+        .then((user) => {
+            if (!user) return res.status(401).json({ message: 'Unauthorized.' });
+
+            bcrypt.compare(password, user.password)
                 .then((isMatch) => {
-                    if (!isMatch) return res.status(401).json({ error: 'Unauthorized.' });
+                    if (!isMatch) return res.status(401).json({ message: 'Unauthorized.' });
 
                     const token = jwt.sign(
                         { userId: user._id, firstname: user.firstname, lastname: user.lastname, email: user.email, role: user.role },
@@ -36,25 +39,27 @@ module.exports.login = (req, res) => {
                 });
         })
         .catch(() => {
-            return res.status(500).json({ error: 'Internal server error.' });
+            return res.status(500).json({ message: 'Internal server error.' });
         });
 };
 
 module.exports.register = (req, res) => {
-    if (req.body.email == null || req.body.firstname == null || req.body.lastname == null || req.body.password == null) {
-        return res.status(400).json({ error: 'Bad request.' });
+    if (!validationResult(req).isEmpty()) {
+        return res.status(400).json({ message: 'One or more required paramters is missing or malformed.' });
     }
 
-    User.findOne({ email: req.body.email.trim().toLowerCase() })
-        .then((user) => {
-            if (user) return res.status(409).json({ error: 'EMAIL_IN_USE' });
+    const { email, firstname, lastname, password } = req.body;
 
-            bcrypt.hash(req.body.password, 10)
+    User.findOne({ email })
+        .then((user) => {
+            if (user) return res.status(409).json({ message: 'EMAIL_ALREADY_IN_USE' });
+
+            bcrypt.hash(password, 10)
                 .then((hash) => {
                     const user = new User({
-                        email: req.body.email.trim().toLowerCase(),
-                        firstname: req.body.firstname.trim(),
-                        lastname: req.body.lastname.trim(),
+                        email,
+                        firstname,
+                        lastname,
                         password: hash,
                         role: 'user'
                     });
@@ -70,6 +75,6 @@ module.exports.register = (req, res) => {
                 });
         })
         .catch(() => {
-            return res.status(500).json({ error: 'Internal server error.' });
+            return res.status(500).json({ message: 'Internal server error.' });
         });
 };

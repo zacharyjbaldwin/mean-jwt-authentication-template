@@ -31,5 +31,6 @@ Use this template for apps that require authentication and roles.
 * ~~Simple user manager~~
 * ~~ngx-toastr alerts~~
 * ~~Change password wizard~~
+* ~~Add NPM package `express-validator` to validate API request parameters~~
 * Error handler HTTP interceptor
 * Forgot password wizard

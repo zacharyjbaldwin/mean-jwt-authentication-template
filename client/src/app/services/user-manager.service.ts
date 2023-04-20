@@ -12,14 +12,14 @@ export class UserManagerService {
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${environment.apiUrl}/user-manager`);
+    return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
   public updateUser(userId: string, body: any): Observable<User> {
-    return this.http.put<User>(`${environment.apiUrl}/user-manager/${userId}`, body);
+    return this.http.patch<User>(`${environment.apiUrl}/users/${userId}`, body);
   }
 
   public deleteUser(userId: string) {
-    return this.http.delete(`${environment.apiUrl}/user-manager/${userId}`);
+    return this.http.delete(`${environment.apiUrl}/users/${userId}`);
   }
 }

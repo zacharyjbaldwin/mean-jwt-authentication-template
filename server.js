@@ -20,19 +20,19 @@ mongoose.connect(MONGO_DB_CONNECTION_STRING)
         app.use((req, res, next) => {
             res.setHeader('Access-Control-Allow-Origin', '*');
             res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
             next();
         });
         
         app.use('/api/authentication', require('./api/routes/authentication.routes'));
         app.use('/api/password', require('./api/routes/password.routes'));
-        app.use('/api/user-manager', require('./api/routes/user-manager.routes'));
+        app.use('/api/users', require('./api/routes/users.routes'));
         
         app.use((req, res) => {
             res.sendFile(path.join(__dirname, 'www', 'index.html'));
         });
         
-        app.listen(PORT, () => { console.log(`Listening on localhost:${PORT}...`); });
+        app.listen(PORT, () => { console.log(`Listening for requests on port ${PORT}...`); });
     })
     .catch(() => {
         console.log('Failed to connect to MongoDB');

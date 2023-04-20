@@ -1,12 +1,12 @@
 const router = require('express').Router();
-const controller = require('../controllers/user-manager.controller');
+const controller = require('../controllers/users.controller');
 const isAuthenticated = require('../middleware/isAuthenticated');
 const isAdmin = require('../middleware/isAdmin');
 
 router.get('/', isAuthenticated, isAdmin, controller.getAllUsers);
 
-router.put('/:id', isAuthenticated, isAdmin, controller.updateUser);
+router.patch('/:userId', isAuthenticated, isAdmin, controller.updateUser);
 
-router.delete('/:id', isAuthenticated, isAdmin, controller.deleteUser);
+router.delete('/:userId', isAuthenticated, isAdmin, controller.deleteUser);
 
 module.exports = router;
