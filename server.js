@@ -27,6 +27,7 @@ mongoose.connect(MONGO_DB_CONNECTION_STRING)
         app.use('/api/authentication', require('./api/routes/authentication.routes'));
         app.use('/api/password', require('./api/routes/password.routes'));
         app.use('/api/users', require('./api/routes/users.routes'));
+        app.use('/api/verification', require('./api/routes/verification.routes'));
         
         app.use((req, res) => {
             res.sendFile(path.join(__dirname, 'www', 'index.html'));

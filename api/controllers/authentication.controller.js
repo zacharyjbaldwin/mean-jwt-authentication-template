@@ -2,9 +2,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user.model');
+const VerificationDetail = require('../models/verification-detail.model');
 const { validationResult } = require('express-validator');
+const { sendEmail } = require('../helpers/mail.helper');
 
 const JWT_SECRET = process.env.JWT_SECRET || require('../../keys.json').JWT_SECRET;
+
+const generateVerificationCode = () => {
+    return String(Math.floor(Math.random() * 888887 + 111111));
+};
 
 module.exports.login = (req, res) => {
     if (!validationResult(req).isEmpty()) {
@@ -50,7 +56,7 @@ module.exports.register = (req, res) => {
 
     const { email, firstname, lastname, password } = req.body;
 
-    User.findOne({ email })
+    User.findOne({ email }, '-password')
         .then((user) => {
             if (user) return res.status(409).json({ message: 'EMAIL_ALREADY_IN_USE' });
 
@@ -66,8 +72,21 @@ module.exports.register = (req, res) => {
 
                     user.save()
                         .then((user) => {
-                            user.password = undefined;
-                            res.status(201).json(user);
+
+                            const verificationDetail = new VerificationDetail({
+                                userId: user._id,
+                                verificationCode: generateVerificationCode(),
+                                expiresOn: new Date(new Date().setDate(new Date().getDate() + 1))
+                            });
+
+                            verificationDetail.save()
+                                .then((verificationDetails) => {
+                                    sendEmail(user.email, 'Please verify your email address', `<p>Hello ${user.firstname},<br><br>Please verify your email address by clicking this link: <a href="http://localhost:4200/verify-email?userId=${user._id}&verificationCode=${verificationDetails.verificationCode}">http://localhost:4200/verify-email?userId=${user._id}&verificationCode=${verificationDetails.verificationCode}</a></p>`);
+                                    res.status(201).json(user);
+                                })
+                                .catch(() => {
+                                    res.status(500).json({ message: 'Registration failed.' });
+                                });
                         })
                         .catch(() => {
                             res.status(500).json({ message: 'Registration failed.' });

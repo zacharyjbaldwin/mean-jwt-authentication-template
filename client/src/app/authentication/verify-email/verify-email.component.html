@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+        <loading-spinner *ngIf="isLoading"></loading-spinner>
+        <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+        <div *ngIf="!error && isVerified" class="alert alert-success">Your email address has been verified!</div>
+    </div>
+</div>

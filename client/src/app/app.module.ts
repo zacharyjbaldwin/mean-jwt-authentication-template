@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { UserManagerComponent } from './authentication/admin/user-manager/user-manager.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
+import { VerifyEmailComponent } from './authentication/verify-email/verify-email.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ChangePasswordComponent } from './authentication/change-password/change
     NavbarComponent,
     HomeComponent,
     UserManagerComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    VerifyEmailComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

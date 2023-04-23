@@ -6,8 +6,8 @@ Use this template for apps that require authentication and roles.
 
 ## Usage
 
-1. Change the values in keys.json to match your infrastructure
-2. Add keys.json to the .gitignore file
+1. Change the values in `keys.json` to match your infrastructure
+2. Add keys.json to the `.gitignore` file
 3. Change the brand text on the navbar
 
 ## What this project includes
@@ -15,7 +15,10 @@ Use this template for apps that require authentication and roles.
 * Login page
 * Signup page
 * Profile page (accessible to authenticated users only)
+  * change password functionality
 * Admin page (accessible to admins only)
+  * simple user manager
+* Email verification
 
 ## Progress and future work
 
@@ -32,5 +35,7 @@ Use this template for apps that require authentication and roles.
 * ~~ngx-toastr alerts~~
 * ~~Change password wizard~~
 * ~~Add NPM package `express-validator` to validate API request parameters~~
-* Error handler HTTP interceptor
+* ~~Email verification~~
+* Request new code for email verification
 * Forgot password wizard
+* Error handler HTTP interceptor
