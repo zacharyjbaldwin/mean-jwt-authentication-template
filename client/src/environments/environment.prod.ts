@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: null
+  apiUrl: 'https://mean-jwt-authentication.herokuapp.com/api'
 };
