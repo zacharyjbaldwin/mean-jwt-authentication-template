@@ -1,7 +1,16 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 text-center">
         <loading-spinner *ngIf="isLoading"></loading-spinner>
-        <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-        <div *ngIf="!error && isVerified" class="alert alert-success">Your email address has been verified!</div>
+        <div *ngIf="!isLoading">
+            <div *ngIf="error">
+                <div *ngIf="!showResendButton && !attemptedResend" class="alert alert-danger">{{ error }}</div>
+                <div *ngIf="showResendButton && !attemptedResend" class="alert alert-danger">{{ error }} Click <a class="btn-link cursor-pointer" (click)="resendVerificationDetails()">here</a> to resend the verification email.</div>
+                <div *ngIf="attemptedResend" class="alert alert-danger">{{ error }}</div>
+            </div>
+            <div *ngIf="!error">
+                <div *ngIf="isVerified && !attemptedResend" class="alert alert-success">Your email address has been verified!</div>
+                <div *ngIf="attemptedResend" class="alert alert-success">A new verification code has been send to your email address.</div>
+            </div>
+        </div>
     </div>
 </div>

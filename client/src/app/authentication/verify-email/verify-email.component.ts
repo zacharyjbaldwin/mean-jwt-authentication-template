@@ -12,6 +12,10 @@ export class VerifyEmailComponent implements OnInit {
   public isLoading: boolean = false;
   public error: string | undefined = undefined;
   public isVerified: boolean = false;
+  public showResendButton: boolean = false;
+  private userId: string | undefined;
+  public resendSuccess: boolean = false;
+  public attemptedResend: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +25,7 @@ export class VerifyEmailComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe({
       next: (params) => {
+        this.userId = params['userId'];
         this.verifyUser(params['userId'], params['verificationCode']);
       }
     });
@@ -42,13 +47,35 @@ export class VerifyEmailComponent implements OnInit {
             break;
           case 'VERIFICATION_CODE_EXPIRED':
             this.error = 'The verification code has expired.'
+            this.showResendButton = true;
             break;
           case 'VERIFICATION_CODE_INVALID':
             this.error = 'The verification code is invalid.'
+            this.showResendButton = true;
             break;
         }
         this.isLoading = false;
       }
-    })
+    });
+  }
+
+  public resendVerificationDetails(): void {
+    this.isLoading = true;
+    this.attemptedResend = true;
+    if (this.userId) {
+      this.verificationService.resendVerificationDetails(this.userId).subscribe({
+        next: response => {
+          if (response.success) {
+            this.resendSuccess = true;
+            this.error = undefined;
+          }
+          this.isLoading = false;
+        },
+        error: error => {
+          this.error = 'Failed to resend verification details. Please try again later.';
+          this.isLoading = false;
+        }
+      })
+    }
   }
 }
