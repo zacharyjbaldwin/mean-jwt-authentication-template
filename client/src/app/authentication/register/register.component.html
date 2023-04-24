@@ -26,7 +26,7 @@
                 <input class="form-control" [ngClass]="{ 'is-invalid': registerForm.get('password')?.invalid && registerForm.get('password')?.touched }" type="password" formControlName="password" required>
                 <span class="form-text invalid-feedback" *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
             </div>
-            <button [disabled]="registerForm.invalid" class="btn btn-dark col-12" type="submit">Login</button>
+            <button [disabled]="registerForm.invalid" class="btn btn-dark col-12" type="submit">Register</button>
         </form>
         <div class="text-center mt-2">
             <a routerLink="/login">Login instead</a>
