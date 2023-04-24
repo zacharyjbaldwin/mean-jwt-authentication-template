@@ -41,7 +41,9 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
-      progressBar: true
+      progressBar: true,
+      timeOut: 7500,
+      maxOpened: 5
     })
   ],
   providers: [

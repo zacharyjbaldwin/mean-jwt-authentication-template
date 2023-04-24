@@ -117,7 +117,7 @@ export class AuthenticationService {
         this.login(email, password, '/profile');
       },
       error: (error) => {
-        if (error.error.error === 'EMAIL_IN_USE') {
+        if (error.error.message === 'EMAIL_ALREADY_IN_USE') {
           this.registerError.next('That email address is already in use.');
         } else {
           this.registerError.next('Registration failed.');
