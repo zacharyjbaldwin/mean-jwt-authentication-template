@@ -1,5 +1,5 @@
 {
-    "DEFAULT_PORT": 3000,
+    "DEFAULT_PORT": 5000,
     "JWT_SECRET": "40EFFBD04A618B4409F33BE0C75AC59C",
     "MONGO_DB_CONNECTION_STRING": "mongodb://localhost:27017/mean-jwt-authentication-template",
 

@@ -4,6 +4,7 @@
   "description": "MEAN stack authentication and authorization template with roles using JSON web tokens.",
   "main": "server.js",
   "scripts": {
+    "develop": "npm test",
     "test": "nodemon server.js",
     "start": "node server.js",
     "clean": "rimraf www",
